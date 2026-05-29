@@ -1,0 +1,542 @@
+```html
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THỬ THÁCH TÌM X – TOÁN 6</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Baloo 2', cursive;
+    background:linear-gradient(to bottom,#fff9db,#dff9fb);
+    min-height:100vh;
+    overflow-x:hidden;
+    color:#333;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:25px;
+}
+
+.title{
+    text-align:center;
+    font-size:52px;
+    color:#ff7f50;
+    margin-bottom:10px;
+    text-shadow:2px 2px white;
+}
+
+.subtitle{
+    text-align:center;
+    font-size:24px;
+    margin-bottom:35px;
+    color:#444;
+}
+
+.decor{
+    text-align:center;
+    font-size:40px;
+    margin-bottom:15px;
+}
+
+.grid{
+    display:grid;
+    gap:25px;
+}
+
+.card{
+    background:white;
+    border-radius:24px;
+    padding:25px;
+    box-shadow:0 8px 18px rgba(0,0,0,0.1);
+    transition:0.3s;
+    animation:fadeIn 0.6s ease;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.question-title{
+    font-size:28px;
+    color:#0984e3;
+    margin-bottom:12px;
+}
+
+.question-text{
+    font-size:24px;
+    margin-bottom:18px;
+    line-height:1.5;
+}
+
+.math-icon{
+    font-size:50px;
+    text-align:center;
+    margin-bottom:15px;
+}
+
+.options{
+    display:grid;
+    gap:12px;
+}
+
+.option{
+    background:#f8fbff;
+    border:2px solid #dfe6e9;
+    padding:14px;
+    border-radius:15px;
+    font-size:20px;
+    cursor:pointer;
+    transition:0.25s;
+}
+
+.option:hover{
+    background:#dff9fb;
+    transform:scale(1.02);
+}
+
+.selected{
+    border:3px solid #74b9ff;
+    background:#e8f4ff;
+}
+
+.correct{
+    background:#55efc4 !important;
+    border-color:#00b894 !important;
+    animation:glow 0.5s;
+}
+
+.wrong{
+    background:#fab1a0 !important;
+    border-color:#d63031 !important;
+    animation:shake 0.4s;
+}
+
+@keyframes shake{
+    0%{transform:translateX(0);}
+    25%{transform:translateX(-5px);}
+    50%{transform:translateX(5px);}
+    75%{transform:translateX(-5px);}
+    100%{transform:translateX(0);}
+}
+
+@keyframes glow{
+    from{
+        box-shadow:0 0 0px #55efc4;
+    }
+    to{
+        box-shadow:0 0 18px #00b894;
+    }
+}
+
+.buttons{
+    text-align:center;
+    margin-top:35px;
+}
+
+button{
+    padding:16px 35px;
+    border:none;
+    border-radius:18px;
+    font-size:24px;
+    font-family:'Baloo 2', cursive;
+    font-weight:bold;
+    cursor:pointer;
+    margin:10px;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+#submitBtn{
+    background:#00b894;
+    color:white;
+}
+
+#resetBtn{
+    background:#fdcb6e;
+}
+
+#result{
+    margin-top:30px;
+    text-align:center;
+    font-size:34px;
+    font-weight:bold;
+    color:#6c5ce7;
+    animation:pop 0.6s ease;
+}
+
+@keyframes pop{
+    from{
+        transform:scale(0);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+.music-btn{
+    position:fixed;
+    top:15px;
+    right:15px;
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    border:none;
+    background:#ff7675;
+    color:white;
+    font-size:26px;
+    cursor:pointer;
+    z-index:999;
+}
+
+@media(max-width:768px){
+
+    .title{
+        font-size:36px;
+    }
+
+    .subtitle{
+        font-size:20px;
+    }
+
+    .question-text{
+        font-size:20px;
+    }
+
+    .option{
+        font-size:18px;
+    }
+
+    button{
+        width:90%;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<button class="music-btn" onclick="toggleMusic()">🔊</button>
+
+<div class="container">
+
+<div class="decor">➕ ➖ ✖️ ➗ 🎯</div>
+
+<h1 class="title">THỬ THÁCH TÌM X – TOÁN 6</h1>
+
+<div class="subtitle">
+Các con hãy tính toán cẩn thận và chọn giá trị đúng của x nhé!
+</div>
+
+<div class="grid">
+
+<!-- Câu 1 -->
+<div class="card" data-answer="B">
+<div class="question-title">Câu 1 – Tìm số hạng chưa biết</div>
+<div class="math-icon">➕</div>
+<div class="question-text">x + 15 = 38</div>
+
+<div class="options">
+<div class="option">A. 13</div>
+<div class="option">B. 23</div>
+<div class="option">C. 43</div>
+<div class="option">D. 53</div>
+</div>
+</div>
+
+<!-- Câu 2 -->
+<div class="card" data-answer="C">
+<div class="question-title">Câu 2 – Tìm số bị trừ</div>
+<div class="math-icon">➖</div>
+<div class="question-text">x − 18 = 25</div>
+
+<div class="options">
+<div class="option">A. 7</div>
+<div class="option">B. 33</div>
+<div class="option">C. 43</div>
+<div class="option">D. 52</div>
+</div>
+</div>
+
+<!-- Câu 3 -->
+<div class="card" data-answer="B">
+<div class="question-title">Câu 3 – Tìm số trừ</div>
+<div class="math-icon">➖</div>
+<div class="question-text">72 − x = 19</div>
+
+<div class="options">
+<div class="option">A. 43</div>
+<div class="option">B. 53</div>
+<div class="option">C. 63</div>
+<div class="option">D. 91</div>
+</div>
+</div>
+
+<!-- Câu 4 -->
+<div class="card" data-answer="C">
+<div class="question-title">Câu 4 – Tìm thừa số chưa biết</div>
+<div class="math-icon">✖️</div>
+<div class="question-text">8 × x = 64</div>
+
+<div class="options">
+<div class="option">A. 6</div>
+<div class="option">B. 7</div>
+<div class="option">C. 8</div>
+<div class="option">D. 9</div>
+</div>
+</div>
+
+<!-- Câu 5 -->
+<div class="card" data-answer="B">
+<div class="question-title">Câu 5 – Tìm số bị chia</div>
+<div class="math-icon">➗</div>
+<div class="question-text">x : 6 = 9</div>
+
+<div class="options">
+<div class="option">A. 15</div>
+<div class="option">B. 54</div>
+<div class="option">C. 63</div>
+<div class="option">D. 72</div>
+</div>
+</div>
+
+<!-- Câu 6 -->
+<div class="card" data-answer="C">
+<div class="question-title">Câu 6 – Tìm số chia</div>
+<div class="math-icon">➗</div>
+<div class="question-text">81 : x = 9</div>
+
+<div class="options">
+<div class="option">A. 7</div>
+<div class="option">B. 8</div>
+<div class="option">C. 9</div>
+<div class="option">D. 10</div>
+</div>
+</div>
+
+<!-- Câu 7 -->
+<div class="card" data-answer="C">
+<div class="question-title">Câu 7 – Dạng lũy thừa</div>
+<div class="math-icon">x²</div>
+<div class="question-text">x² = 49</div>
+
+<div class="options">
+<div class="option">A. 5</div>
+<div class="option">B. 6</div>
+<div class="option">C. 7</div>
+<div class="option">D. 8</div>
+</div>
+</div>
+
+<!-- Câu 8 -->
+<div class="card" data-answer="A">
+<div class="question-title">Câu 8 – Phương trình tích</div>
+<div class="math-icon">🎯</div>
+<div class="question-text">x(x − 3) = 0</div>
+
+<div class="options">
+<div class="option">A. x = 0 hoặc x = 3</div>
+<div class="option">B. x = 1 hoặc x = 3</div>
+<div class="option">C. x = 0 hoặc x = −3</div>
+<div class="option">D. x = 3</div>
+</div>
+</div>
+
+<!-- Câu 9 -->
+<div class="card" data-answer="C">
+<div class="question-title">Câu 9 – Vận dụng</div>
+<div class="math-icon">✖️</div>
+<div class="question-text">3x = 45</div>
+
+<div class="options">
+<div class="option">A. 5</div>
+<div class="option">B. 10</div>
+<div class="option">C. 15</div>
+<div class="option">D. 20</div>
+</div>
+</div>
+
+<!-- Câu 10 -->
+<div class="card" data-answer="C">
+<div class="question-title">Câu 10 – Vận dụng nâng cao</div>
+<div class="math-icon">🎯</div>
+<div class="question-text">2x + 8 = 24</div>
+
+<div class="options">
+<div class="option">A. 6</div>
+<div class="option">B. 7</div>
+<div class="option">C. 8</div>
+<div class="option">D. 9</div>
+</div>
+</div>
+
+</div>
+
+<div class="buttons">
+<button id="submitBtn">NỘP BÀI</button>
+<button id="resetBtn">LÀM LẠI</button>
+</div>
+
+<div id="result"></div>
+
+</div>
+
+<!-- Nhạc nền -->
+<audio id="bgMusic" autoplay loop>
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+const cards = document.querySelectorAll(".card");
+
+cards.forEach(card=>{
+
+    const options = card.querySelectorAll(".option");
+
+    options.forEach(option=>{
+
+        option.addEventListener("click",()=>{
+
+            options.forEach(o=>o.classList.remove("selected"));
+
+            option.classList.add("selected");
+
+        });
+
+    });
+
+});
+
+document.getElementById("submitBtn").addEventListener("click",()=>{
+
+    let score = 0;
+
+    cards.forEach(card=>{
+
+        const correct = card.dataset.answer;
+        const options = card.querySelectorAll(".option");
+
+        options.forEach(option=>{
+
+            option.classList.remove("correct","wrong");
+
+            if(option.classList.contains("selected")){
+
+                if(option.innerText.startsWith(correct)){
+
+                    option.classList.add("correct");
+                    score++;
+
+                }else{
+
+                    option.classList.add("wrong");
+
+                }
+
+            }
+
+        });
+
+    });
+
+    let message = "";
+
+    if(score === 10){
+
+        message = "🎉 Xuất sắc!";
+
+    }else if(score >=7){
+
+        message = "👏 Rất tốt!";
+
+    }else if(score >=5){
+
+        message = "😊 Khá lắm!";
+
+    }else{
+
+        message = "💪 Cố gắng thêm nhé!";
+
+    }
+
+    document.getElementById("result").innerHTML =
+    `Con trả lời đúng ${score}/10 câu.<br>${message}`;
+
+});
+
+document.getElementById("resetBtn").addEventListener("click",()=>{
+
+    cards.forEach(card=>{
+
+        const options = card.querySelectorAll(".option");
+
+        options.forEach(option=>{
+
+            option.classList.remove("selected","correct","wrong");
+
+        });
+
+    });
+
+    document.getElementById("result").innerHTML = "";
+
+});
+
+const music = document.getElementById("bgMusic");
+
+music.volume = 0.2;
+
+function toggleMusic(){
+
+    const btn = document.querySelector(".music-btn");
+
+    if(music.paused){
+
+        music.play();
+        btn.innerHTML = "🔊";
+
+    }else{
+
+        music.pause();
+        btn.innerHTML = "🔈";
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
+```
